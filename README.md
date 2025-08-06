@@ -1,0 +1,18 @@
+# Hi there, I'm Muzamil 👋
+
+I'm a passionate frontend & React developer from Pakistan 🇵🇰
+
+## 🚀 Technologies I work with:
+- 🔹 React.js / Next.js
+- 🔹 Tailwind CSS / Bootstrap
+- 🔹 Node.js / Express (learning)
+- 🔹 Git & GitHub
+
+## 📈 Stats
+![Muzamil's GitHub stats](https://github-readme-stats.vercel.app/api?username=muzamilniaz&show_icons=true&theme=radical)
+
+## 🔗 Connect with me:
+- [LinkedIn]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/muzamil-niaz-68b9991a3/))
+- [Email](mailto:muzamilniaz.mn@gmail.com)
+
+> “Code is like humor. When you have to explain it, it’s bad.” – Cory House
