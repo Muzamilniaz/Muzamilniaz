@@ -39,7 +39,48 @@ const Hero = () => {
         </div>
       </div>
 
-        <ComputersCanvas />
+        <div className='hidden sm:block absolute inset-0 top-[90px]'>
+          <ComputersCanvas />
+        </div>
+
+        {/* Mobile Hero Background */}
+        <div className='sm:hidden absolute inset-0 top-[90px] w-full h-full flex flex-col items-center justify-center'>
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+            className='relative'
+          >
+            <div className='w-[200px] h-[200px] rounded-full bg-gradient-to-r from-[#915EFF] to-[#915EFF] opacity-10 blur-3xl' />
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full border-2 border-[#915EFF] border-opacity-30'
+            />
+            <motion.div
+              animate={{
+                scale: [1.1, 1, 1.1],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100px] h-[100px] rounded-full bg-gradient-to-br from-[#915EFF] to-transparent opacity-20'
+            />
+          </motion.div>
+        </div>
       
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
