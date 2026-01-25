@@ -31,10 +31,24 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isSupported, setIsSupported] = useState(true);
 
   useEffect(() => {
+    // Check WebGL support
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (!gl) {
+        setIsSupported(false);
+        console.warn('WebGL not supported');
+      }
+    } catch (e) {
+      setIsSupported(false);
+      console.warn('WebGL check failed:', e);
+    }
+
     // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
 
     // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
@@ -53,19 +67,29 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  if (!isSupported) {
+    return (
+      <div className='w-full h-full bg-gradient-to-b from-gray-900 to-black' />
+    );
+  }
+
   return (
     <Canvas
       frameloop='demand'
-      shadows
-      dpr={[1, 2]}
-      camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
+      shadows={!isMobile}
+      dpr={isMobile ? 1 : [1, 2]}
+      camera={{ position: isMobile ? [0, 0, 20] : [20, 3, 5], fov: 25 }}
+      gl={{ preserveDrawingBuffer: true, antialias: !isMobile, powerPreference: 'high-performance' }}
+      className='w-full h-full'
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
+          enablePan={!isMobile}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
+          autoRotate={!isMobile}
+          autoRotateSpeed={2}
         />
         <Computers isMobile={isMobile} />
       </Suspense>
