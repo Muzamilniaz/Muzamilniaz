@@ -172,7 +172,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-white font-semibold text-xs">Phone</p>
-                        <p className="text-secondary/70 text-xs">+92 316 684</p>
+                        <p className="text-secondary/70 text-xs">+92 316 6844292</p>
                       </div>
                     </motion.a>
 
@@ -195,7 +195,7 @@ const Contact = () => {
 
                     {/* LinkedIn */}
                     <motion.a
-                      href="https://linkedin.com"
+                      href="https://www.linkedin.com/in/muzamil-niaz-68b9991a3/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-row items-center gap-2 p-3 rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/40 hover:border-cyan-500/70 transition-all duration-300 group no-underline col-span-1"

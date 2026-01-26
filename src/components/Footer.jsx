@@ -10,20 +10,14 @@ const Footer = () => {
     {
       name: "GitHub",
       icon: SiGithub,
-      link: "https://github.com",
+      link: "https://github.com/Muzamilniaz",
       color: "text-gray-400",
     },
     {
       name: "LinkedIn",
       icon: SiLinkedin,
-      link: "https://linkedin.com",
+      link: "https://www.linkedin.com/in/muzamil-niaz-68b9991a3/",
       color: "text-cyan-400",
-    },
-    {
-      name: "Twitter",
-      icon: FaTwitter,
-      link: "https://twitter.com",
-      color: "text-blue-400",
     },
     {
       name: "Email",
