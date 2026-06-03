@@ -9,8 +9,8 @@ I'm a passionate frontend & React developer from Pakistan 🇵🇰
 - 🔹 Git & GitHub
 
 ## 🔗 Connect with me:
+- [Portfolio](https://muzamil-niaz.netlify.app/)
 - [LinkedIn](https://www.linkedin.com/in/muzamil-niaz-68b9991a3/)
 - [Email](mailto:muzamilniaz.mn@gmail.com)
-- [Portfolio](https://muzamil-niaz.netlify.app/)
 
 > “Code is like humor. When you have to explain it, it’s bad.” – Cory House
