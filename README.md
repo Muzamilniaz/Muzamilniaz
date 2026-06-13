@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Muzamil Niaz Banner" width="100%" />
+  <img src="src/assets/banner.png" alt="Muzamil Niaz Banner" width="100%" />
 </p>
 <h1 align="center">Hi 👋, I'm Muzamil Niaz</h1>
 <h3 align="center">Software Engineer | React & Next.js Developer | ASP.NET Core / MVC | Tailwind CSS</h3>
