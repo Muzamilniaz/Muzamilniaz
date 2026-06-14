@@ -53,12 +53,24 @@ const ExperienceCard = ({ experience }) => {
         <h3 className='text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 bg-gradient-to-r from-white to-[#915EFF] bg-clip-text text-transparent'>
           {experience.title}
         </h3>
-        <p
-          className='text-secondary text-sm sm:text-base font-semibold mb-4'
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
+        {experience.company_link ? (
+          <a
+            href={experience.company_link}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-block text-secondary hover:text-[#915EFF] text-sm sm:text-base font-semibold mb-4 transition-colors'
+            style={{ margin: 0 }}
+          >
+            {experience.company_name}
+          </a>
+        ) : (
+          <p
+            className='text-secondary text-sm sm:text-base font-semibold mb-4'
+            style={{ margin: 0 }}
+          >
+            {experience.company_name}
+          </p>
+        )}
         
         <p className='text-xs sm:text-sm text-[#C1C2D3] font-light italic mb-4 border-l-2 border-[#915EFF] pl-3'>
           {experience.date}

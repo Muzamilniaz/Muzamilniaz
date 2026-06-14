@@ -6,6 +6,8 @@ import web from "./web.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
+import bannerMuzamil from "./banner-muzamil.png";
+import muzamilProfile from "./muzamil.png";
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -20,10 +22,15 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import aspnet from "./tech/aspnet.png";
+import aspnetMvc from "./tech/aspnet-mvc.png";
+import webApi from "./tech/web-api.png";
+import sqlServer from "./tech/sql-server.png";
 
 import atruleLogo from "../assets/company/atrule-logo.png";
 import techscopeLogo from "../assets/company/techscope-fav.png";
 import softinfinityLogo from "../assets/company/soft-infinty-logo.png";
+import buchHospitalLogo from "../assets/company/buch-hospital.svg";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -72,6 +79,8 @@ export {
   github,
   menu,
   close,
+  bannerMuzamil,
+  muzamilProfile,
   css,
   docker,
   figma,
@@ -85,6 +94,10 @@ export {
   tailwind,
   typescript,
   threejs,
+  aspnet,
+  aspnetMvc,
+  webApi,
+  sqlServer,
   meta,
   shopify,
   starbucks,
@@ -95,6 +108,7 @@ export {
   atruleLogo,
   techscopeLogo,
   softinfinityLogo,
+  buchHospitalLogo,
   atcommerce,
   placed,
   techscope,

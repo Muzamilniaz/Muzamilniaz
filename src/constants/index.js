@@ -23,9 +23,14 @@ import {
   jobit,
   tripguide,
   threejs,
+  aspnet,
+  aspnetMvc,
+  webApi,
+  sqlServer,
   atruleLogo,
   techscopeLogo,
   softinfinityLogo,
+  buchHospitalLogo,
 } from "../assets";
 
 export const navLinks = [
@@ -45,19 +50,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
+    title: "Software Engineer",
     icon: web,
   },
   {
-    title: "React Native Developer",
+    title: "React.js Engineer",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
+    title: "ASP.NET Engineer",
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "API Engineer",
     icon: creator,
   },
 ];
@@ -96,6 +101,22 @@ const technologies = [
     icon: nodejs,
   },
   {
+    name: "ASP.NET",
+    icon: aspnet,
+  },
+  {
+    name: "ASP.NET MVC",
+    icon: aspnetMvc,
+  },
+  {
+    name: "Web API",
+    icon: webApi,
+  },
+  {
+    name: "SQL Server",
+    icon: sqlServer,
+  },
+  {
     name: "MongoDB",
     icon: mongodb,
   },
@@ -118,12 +139,26 @@ const technologies = [
 ];
 
 const experiences = [
-    {
-    title: "MERN Stack Developer",
+  {
+    title: "Software Engineer",
+    company_name: "Buch International Hospital",
+    company_link: "https://buchhospital.com",
+    icon: buchHospitalLogo,
+    iconBg: "#ffffff",
+    date: "Mar 2026 - Present",
+    points: [
+      "Lead software engineering for a comprehensive Hospital Management System (HMS) spanning 16+ clinical and administrative modules including Patient Management, Scheduling, Billing, Laboratory, Radiology, Pharmacy, Inventory, HR & Payroll, Blood Bank, and E-Claims.",
+      "Architect a scalable React.js application with TanStack Query for server-state management, delivering real-time data synchronization across 250+ screens while consuming .NET (ASP.NET Core) REST APIs.",
+      "Built a reusable, component-based UI library with Tailwind CSS, significantly reducing per-screen development time and enforcing visual consistency across all 16 modules.",
+    ],
+  },
+  {
+    title: "Software Engineer",
     company_name: "Techscope (Remote)",
+    company_link: "https://techscope.org",
     icon: techscopeLogo,
     iconBg: "#000000",
-    date: "June 2023 - Currently Working",
+    date: "June 2023 - Present",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Designing the layout, selecting color schemes, and choosing fonts.",
@@ -132,8 +167,9 @@ const experiences = [
     ],
   },
   {
-    title: "Senior Frontend Engineer",
+    title: "Software Engineer",
     company_name: "Atrule Technologies Pvt Ltd",
+    company_link: "https://atrule.com",
     icon: atruleLogo,
     iconBg: "#ffffff",
     date: "February 2021 - October 2025 ",
@@ -146,8 +182,9 @@ const experiences = [
   },
 
   {
-    title: "Frontend Designer",
+    title: "Software Engineer",
     company_name: "Soft Infinity",
+    company_link: "https://softinfinitytechnology.com",
     icon: softinfinityLogo,
     iconBg: "#383E56",
     date: "Feb 2020 - Aug 2020",
@@ -169,7 +206,7 @@ const testimonials = [
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Muzamil does.",
+      "I've never met a software engineer who truly cares about their clients' success like Muzamil does.",
     name: "Chris Brown",
     designation: "COO",
     company: "Software Company",

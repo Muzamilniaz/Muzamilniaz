@@ -1,4 +1,3 @@
-import prioritizeImg from "../assets/b1.svg";
 import gridImg from "../assets/grid.svg";
 import b4Img from "../assets/b4.svg";
 import b5Img from "../assets/b5.svg";
@@ -28,6 +27,7 @@ import {
   veroApp,
   atcommerceDesign,
   batteryApp,
+  muzamilProfile,
 } from "../assets/index";
 
 export const navItems = [
@@ -40,12 +40,12 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
+    title: "I prioritize client collaboration, fostering open communication",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
+    imgClassName: "object-[center_22%]",
     titleClassName: "justify-end",
-    img: prioritizeImg,
+    img: muzamilProfile,
     spareImg: "",
   },
   {
@@ -60,8 +60,8 @@ export const gridItems = [
   },
   {
     id: 3,
-    title: "My tech stack",
-    description: "I constantly try to improve",
+    title: "From complex ideas to dependable digital products",
+    description: "I combine thoughtful engineering, clear communication, and product-focused decisions to create software that delivers lasting value.",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -80,8 +80,8 @@ export const gridItems = [
   },
   {
     id: 5,
-    title: "Exploring new creative possibilities in frontend development.",
-    description: "Passionate about blending design, interactivity, and technology for unique user experiences.",
+    title: "Exploring new creative possibilities in software engineering.",
+    description: "Passionate about blending architecture, interactivity, and technology for scalable user experiences.",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-top-[50%] top-[5%]",
@@ -157,7 +157,7 @@ export const projectsByCategory = {
     {
       id: 3,
       title: "Quality Shop - DTC Marketplace for Healthy Brands",
-      description: "DTC marketplace for healthy brands with scalable Next.js frontend managing 13K+ businesses from 2.5M Shopify stores. Integrated dynamic data visualization, filtering features, and OpenAI API for intelligent classification. Optimized performance with reusable components and efficient API handling.",
+      description: "DTC marketplace for healthy brands with scalable Next.js architecture managing 13K+ businesses from 2.5M Shopify stores. Integrated dynamic data visualization, filtering features, and OpenAI API for intelligent classification. Optimized performance with reusable components and efficient API handling.",
       tags: ["Next.js", "React", "Tailwind CSS", "OpenAI API", "PostgreSQL", "GitHub"],
       image: qualityShop,
       source_code_link: "#",
@@ -183,8 +183,8 @@ export const projectsByCategory = {
     {
       id: 6,
       title: "WynShop - Customer Order Pickup Dashboard (Instacart)",
-      description: "React PWA for retail order management and tracking with real-time updates. Built responsive frontend with Redux Toolkit and Tailwind CSS for scalable performance. Implemented automated testing with Jasmine and maintained code quality with ESLint and SonarQube.",
-      tags: ["React PWA", "Redux Toolkit", "Tailwind CSS", "GraphQL", "Jasmine", "ESLint", "SonarQube"],
+      description: "React PWA for retail order management and tracking with real-time updates. Built responsive application flows with Redux Toolkit and Tailwind CSS for scalable performance. Implemented automated testing with Jasmine and maintained code quality with ESLint and SonarQube.",
+      tags: ["React PWA", "Redux Toolkit", "Tailwind CSS", "SQL", "Jasmine", "ESLint", "SonarQube"],
       image: wynshop,
       source_code_link: "#",
     },

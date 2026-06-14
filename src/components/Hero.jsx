@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 
 import { styles } from "../styles";
+import { muzamilProfile } from "../assets";
 import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
-        className={`absolute inset-0 top-[90px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[90px] z-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 pointer-events-none`}
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
@@ -23,28 +24,41 @@ const Hero = () => {
             <TypeAnimation
               sequence={[
                 "I Turn Ideas into Digital Products",
-2000,
-"I Design & Build Beautiful Interfaces",
-2000,
-"I Help Brands Grow Online",
-2000,
-"I Create High-Performance Web Apps",
-2000,
+                2000,
+                "I Design & Build Beautiful Interfaces",
+                2000,
+                "I Help Brands Grow Online",
+                2000,
+                "I Create High-Performance Web Apps",
+                2000,
               ]}
               speed={50}
               wrapper="span"
               repeat={Infinity}
             />
           </div>
+          <motion.div
+            className='mt-7 block w-[210px] overflow-hidden rounded-[28px] border border-[#915EFF]/30 bg-white/[0.04] p-2 shadow-2xl shadow-[#915EFF]/20 sm:hidden'
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.35, duration: 0.55, ease: "easeOut" }}
+          >
+            <img
+              src={muzamilProfile}
+              alt='Muzamil Niaz'
+              className='aspect-square w-full rounded-[22px] object-cover'
+              loading='eager'
+            />
+          </motion.div>
         </div>
       </div>
 
-        <div className='hidden sm:block absolute inset-0 top-[90px]'>
+        <div className='pointer-events-none absolute inset-x-0 bottom-0 top-[90px] z-0 hidden sm:block'>
           <ComputersCanvas />
         </div>
 
         {/* Mobile Hero Background */}
-        <div className='sm:hidden absolute inset-0 top-[90px] w-full h-full flex flex-col items-center justify-center'>
+        <div className='sm:hidden absolute inset-0 top-[90px] z-0 w-full h-full flex flex-col items-center justify-center'>
           <motion.div
             animate={{
               y: [0, -20, 0],

@@ -1,14 +1,25 @@
 import { BrowserRouter } from "react-router-dom";
 
-import {  Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas, Footer } from "./components";
+import {
+  Contact,
+  Experience,
+  Feedbacks,
+  Hero,
+  Navbar,
+  Tech,
+  Works,
+  StarsCanvas,
+  Footer,
+  ProfileBanner,
+} from "./components";
 import Grid from "./components/Grid";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-          <Navbar />
+        <Navbar />
+        <div className='hero-background bg-hero-pattern bg-cover bg-center bg-no-repeat'>
           <Hero />
         </div>
         <Grid />
@@ -16,6 +27,7 @@ const App = () => {
         <Tech />
         <Works />
         <Feedbacks />
+        {/* <ProfileBanner /> */}
         <div className='relative z-0'>
           <Contact />
           <StarsCanvas />

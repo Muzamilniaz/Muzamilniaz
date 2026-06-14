@@ -9,14 +9,58 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: 92px;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: #050816;
+  overflow-x: hidden;
+  min-height: 100%;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+canvas {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;
   display: block;
+}
+
+.hero-background {
+  min-height: 100vh;
+  background-position: center top;
+  background-size: cover;
+  isolation: isolate;
+}
+
+@media (min-width: 1024px) {
+  .hero-background {
+    background-position: center center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .black-gradient {

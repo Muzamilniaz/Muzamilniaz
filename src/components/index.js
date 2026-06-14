@@ -8,6 +8,7 @@ import Works from "./Works";
 import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import ProfileBanner from "./ProfileBanner";
 import CanvasLoader from "./Loader";
 
 
@@ -21,6 +22,7 @@ export {
   Feedbacks,
   Contact,
   Footer,
+  ProfileBanner,
   CanvasLoader,
   EarthCanvas, 
   BallCanvas, 

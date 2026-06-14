@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { IoCopyOutline } from "react-icons/io5";
+import {
+  HiOutlineChatBubbleLeftRight,
+  HiOutlineLightBulb,
+  HiOutlineRocketLaunch,
+} from "react-icons/hi2";
 import Lottie from "react-lottie";
 
 import { cn } from "../../lib/utils";
@@ -19,6 +24,22 @@ const BackgroundGradientAnimation = ({ children }) => (
   </div>
 );
 
+const StrengthPill = ({ item, index }) => (
+  <motion.div
+    className="flex min-w-0 items-center gap-3 rounded-xl border border-[#915EFF]/30 bg-[#0b0c23]/80 px-3 py-3 text-sm font-medium text-white/90 shadow-sm shadow-black/20 backdrop-blur-md transition-colors duration-300 hover:border-[#915EFF]/70 hover:bg-[#151030]"
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    whileHover={{ y: -2 }}
+    transition={{ delay: 0.06 * index }}
+    viewport={{ once: true }}
+  >
+    <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[#915EFF]/20 text-xl text-[#c4a7ff] shadow-inner">
+      <item.icon aria-hidden="true" />
+    </span>
+    <span className="min-w-0 leading-tight">{item.label}</span>
+  </motion.div>
+);
+
 export const BentoGrid = ({ className, children }) => {
   return (
     <div className={cn("grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 gap-4 lg:gap-6 mx-auto p-4", className)}>
@@ -28,8 +49,11 @@ export const BentoGrid = ({ className, children }) => {
 };
 
 export const BentoGridItem = ({ className, id, title, description, img, imgClassName, titleClassName, spareImg, }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const strengths = [
+    { label: "Product-minded problem solving", icon: HiOutlineLightBulb },
+    { label: "Clear, collaborative communication", icon: HiOutlineChatBubbleLeftRight },
+    { label: "Reliable delivery from idea to launch", icon: HiOutlineRocketLaunch },
+  ];
 
   const [copied, setCopied] = useState(false);
   const [playConfetti, setPlayConfetti] = useState(false);
@@ -130,7 +154,11 @@ export const BentoGridItem = ({ className, id, title, description, img, imgClass
           <motion.img 
             src={img} 
             alt={String(title) || "grid-item"} 
-            className={cn(imgClassName, "w-full h-full object-cover object-center opacity-50 group-hover:opacity-70 transition-opacity duration-500")} 
+            className={cn(
+              "h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-70",
+              id === 1 ? "object-[center_22%] opacity-70 group-hover:opacity-90" : "object-center",
+              imgClassName
+            )}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.5 }}
           />
@@ -207,7 +235,13 @@ export const BentoGridItem = ({ className, id, title, description, img, imgClass
       )}
 
       {/* main content */}
-      <div className={cn(titleClassName, "relative p-5 sm:p-6 md:p-7 flex flex-col gap-3 sm:gap-4 h-full justify-between z-10")}>
+      <div
+        className={cn(
+          "relative z-10 flex h-full flex-col gap-3 p-5 sm:gap-4 sm:p-6 md:p-7",
+          id === 1 ? "justify-end" : "justify-between",
+          titleClassName
+        )}
+      >
         {description && (
           <motion.div 
             className="text-xs sm:text-sm text-[#C1C2D3] font-light tracking-wide group-hover:text-white/90 transition-colors duration-300"
@@ -228,37 +262,12 @@ export const BentoGridItem = ({ className, id, title, description, img, imgClass
           {title}
         </motion.div>
 
-        {/* Tech Stack for id 3 */}
+        {/* Working strengths for id 3 */}
         {id === 3 && (
-          <div className="flex gap-2 sm:gap-3 absolute -right-2 sm:-right-3 lg:-right-2 top-10 sm:top-12">
-            <div className="flex flex-col gap-2 sm:gap-3">
-              {leftLists.map((item, i) => (
-                <motion.span 
-                  key={i} 
-                  className="py-2 px-3 rounded-lg bg-gradient-to-r from-[#915EFF]/10 to-[#c946e6]/10 border border-[#915EFF]/30 text-xs text-white/90 font-medium backdrop-blur-md hover:border-[#915EFF]/70 hover:from-[#915EFF]/20 hover:to-[#c946e6]/20 transition-all duration-300"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  transition={{ delay: 0.1 * i }}
-                >
-                  {item}
-                </motion.span>
-              ))}
-            </div>
-            <div className="flex flex-col gap-2 sm:gap-3">
-              {rightLists.map((item, i) => (
-                <motion.span 
-                  key={i} 
-                  className="py-2 px-3 rounded-lg bg-gradient-to-r from-[#915EFF]/10 to-[#c946e6]/10 border border-[#915EFF]/30 text-xs text-white/90 font-medium backdrop-blur-md hover:border-[#915EFF]/70 hover:from-[#915EFF]/20 hover:to-[#c946e6]/20 transition-all duration-300"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  transition={{ delay: 0.1 * i }}
-                >
-                  {item}
-                </motion.span>
-              ))}
-            </div>
+          <div className="mt-1 grid grid-cols-1 gap-2">
+            {strengths.map((item, i) => (
+              <StrengthPill key={item.label} item={item} index={i} />
+            ))}
           </div>
         )}
 
