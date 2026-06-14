@@ -11,6 +11,7 @@ import {
   StarsCanvas,
   Footer,
   ProfileBanner,
+  PortfolioChat,
 } from "./components";
 import Grid from "./components/Grid";
 
@@ -33,6 +34,7 @@ const App = () => {
           <StarsCanvas />
         </div>
         <Footer />
+        <PortfolioChat />
       </div>
     </BrowserRouter>
   );

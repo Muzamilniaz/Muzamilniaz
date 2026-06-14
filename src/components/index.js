@@ -9,6 +9,7 @@ import Feedbacks from "./Feedbacks";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import ProfileBanner from "./ProfileBanner";
+import PortfolioChat from "./PortfolioChat";
 import CanvasLoader from "./Loader";
 
 
@@ -23,6 +24,7 @@ export {
   Contact,
   Footer,
   ProfileBanner,
+  PortfolioChat,
   CanvasLoader,
   EarthCanvas, 
   BallCanvas, 
