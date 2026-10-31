@@ -32,6 +32,8 @@ import {
   softinfinityLogo,
   buchHospitalLogo,
 } from "../assets";
+import aigencyLogo from "../assets/company/aigency-logo.png";
+import placedLogo from "../assets/company/placed-logo.svg";
 
 export const navLinks = [
   {
@@ -50,19 +52,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Software Engineer",
+    title: "Senior Software Engineer",
     icon: web,
   },
   {
-    title: "React.js Engineer",
+    title: "React & Next.js Engineer",
     icon: mobile,
   },
   {
-    title: "ASP.NET Engineer",
+    title: "Full Stack Developer",
     icon: backend,
   },
   {
-    title: "API Engineer",
+    title: "AI-Powered SaaS Developer",
     icon: creator,
   },
 ];
@@ -140,58 +142,81 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Software Engineer",
+    title: "Software Engineer (Full Stack) · Remote",
+    company_name: "Aigency Solutions",
+    focus: "AI-powered product development",
+    technologies: ["React", "Supabase", "Lovable AI"],
+    icon: aigencyLogo,
+    iconBg: "#ffffff",
+    date: "Sep 2026 - Present",
+    points: [
+      "Build the Aladine web product remotely using React and Supabase for the backend, database, and authentication.",
+      "Use Lovable AI to speed up UI scaffolding and iteration, then review and refine the generated code to production standards.",
+      "Ship features in a small remote team, working asynchronously across time zones.",
+    ],
+  },
+  {
+    title: "Senior Software Engineer",
     company_name: "Buch International Hospital",
+    focus: "Enterprise healthcare at scale",
+    technologies: ["React", "TanStack Query", "shadcn/ui", "ASP.NET Core APIs"],
     company_link: "https://buchhospital.com",
     icon: buchHospitalLogo,
-    iconBg: "#ffffff",
+    iconBg: "#b1cf60",
+    wideIcon: true,
     date: "Mar 2026 - Present",
     points: [
-      "Lead software engineering for a comprehensive Hospital Management System (HMS) spanning 16+ clinical and administrative modules including Patient Management, Scheduling, Billing, Laboratory, Radiology, Pharmacy, Inventory, HR & Payroll, Blood Bank, and E-Claims.",
-      "Architect a scalable React.js application with TanStack Query for server-state management, delivering real-time data synchronization across 250+ screens while consuming .NET (ASP.NET Core) REST APIs.",
-      "Built a reusable, component-based UI library with Tailwind CSS, significantly reducing per-screen development time and enforcing visual consistency across all 16 modules.",
+      "Lead the frontend of a hospital management system with 16+ clinical and administrative modules and 250+ screens, used across a 500+ bed hospital.",
+      "Architected the React app around TanStack Query for server state, caching, and optimistic updates, keeping data in sync across departments.",
+      "Built a reusable Tailwind CSS and shadcn/ui component library shared by all modules, speeding up screen delivery and keeping the UI consistent.",
+      "Implemented role-based access control and protected routing for 10+ staff roles, including doctors, nurses, lab technicians, radiologists, pharmacists, HR, and admin.",
+      "Worked with .NET backend engineers on API contracts, payload structure, and error handling for reliable clinical data flow.",
     ],
   },
   {
-    title: "Software Engineer",
-    company_name: "Techscope (Remote)",
-    company_link: "https://techscope.org",
-    icon: techscopeLogo,
-    iconBg: "#000000",
-    date: "June 2023 - Present",
+    title: "Full Stack Developer · Remote, Part-time",
+    company_name: "placed.today, USA",
+    focus: "Full-stack products for a US-based team",
+    technologies: ["React", "Next.js", "Node.js", "MongoDB"],
+    company_link: "https://placed.today",
+    icon: placedLogo,
+    iconBg: "#ffffff",
+    wideIcon: true,
+    date: "Jun 2023 - Aug 2024",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Designing the layout, selecting color schemes, and choosing fonts.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Developing user interface components and implementing them using React.js concepts and workflows such as Redux, Flux, and Webpack.",
+      "Built full-stack features for multiple client projects using React, Next.js, Node.js, and MongoDB.",
+      "Implemented JWT authentication, session management, and protected routes, and integrated third-party APIs with error handling and rate limiting.",
+      "Improved Core Web Vitals and SEO through SSR and SSG strategies in Next.js.",
     ],
   },
   {
-    title: "Software Engineer",
+    title: "Senior Software Engineer",
     company_name: "Atrule Technologies Pvt Ltd",
+    focus: "From intern to senior engineer",
+    technologies: ["React", "Next.js", "Vue.js"],
     company_link: "https://atrule.com",
     icon: atruleLogo,
     iconBg: "#ffffff",
-    date: "February 2021 - October 2025 ",
+    date: "Feb 2021 - Oct 2025",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Grew from Frontend Intern to Senior Software Engineer over 4+ years on enterprise e-commerce and SaaS platforms.",
+      "Reduced bundle sizes by up to 40% on key projects using code splitting, lazy loading, and memoisation, improving Core Web Vitals.",
+      "Built applications in React, Next.js, and Vue.js, and turned Figma and PSD designs into responsive, pixel-accurate interfaces.",
+      "Mentored junior developers through code reviews and pair programming.",
     ],
   },
 
   {
-    title: "Software Engineer",
-    company_name: "Soft Infinity",
+    title: "Frontend Designer",
+    company_name: "Soft Infinity Technology",
+    focus: "The start of my frontend journey",
+    technologies: ["Figma", "WordPress", "Responsive UI"],
     company_link: "https://softinfinitytechnology.com",
     icon: softinfinityLogo,
     iconBg: "#383E56",
     date: "Feb 2020 - Aug 2020",
     points: [
-      "Designing and implementing user interface components for web applications.",
-      "Collaborating with UX designers to create intuitive and visually appealing designs.",
-      "Optimizing components for maximum performance across a vast array of web-capable devices and browsers.",
+      "Designed responsive UI layouts in Figma and delivered them as cross-browser WordPress interfaces.",
     ],
   },
 ];

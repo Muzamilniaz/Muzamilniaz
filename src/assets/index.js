@@ -30,7 +30,7 @@ import sqlServer from "./tech/sql-server.png";
 import atruleLogo from "../assets/company/atrule-logo.png";
 import techscopeLogo from "../assets/company/techscope-fav.png";
 import softinfinityLogo from "../assets/company/soft-infinty-logo.png";
-import buchHospitalLogo from "../assets/company/buch-hospital.svg";
+import buchHospitalLogo from "../assets/company/buch-hospital.jpg";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";

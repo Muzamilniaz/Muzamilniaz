@@ -1,106 +1,60 @@
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
+import { Component, Suspense, useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Bounds, Center, OrbitControls, useGLTF } from "@react-three/drei";
+import { useReducedMotionPreference } from "../../hooks/useReducedMotionPreference";
 import CanvasLoader from "../Loader";
 
 const computerModelUrl = `${import.meta.env.BASE_URL}desktop_pc/scene.gltf`;
 
-const Computers = ({ isMobile }) => {
-  const computer = useGLTF(computerModelUrl);
+const StaticComputer = () => <div className='workstation-static' role='img' aria-label='Developer desktop workstation'><div className='workstation-static-screen'><span>&lt;/&gt;</span><i /><i /><i /></div><div className='workstation-static-stand' /><div className='workstation-static-keyboard' /></div>;
 
-  return (
-    <mesh>
-      <hemisphereLight intensity={0.15} groundColor='black' />
-      <spotLight
-        position={[-20, 50, 10]}
-        angle={0.12}
-        penumbra={1}
-        intensity={1}
-        castShadow
-        shadow-mapSize={1024}
-      />
-      <pointLight intensity={1} />
-      <primitive
-        object={computer.scene}
-        scale={isMobile ? 0.7 : 0.85}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
-      />
-    </mesh>
-  );
+class ComputerBoundary extends Component {
+  state = { unavailable: false };
+  static getDerivedStateFromError() { return { unavailable: true }; }
+  render() { return this.state.unavailable ? <StaticComputer /> : this.props.children; }
+}
+
+const ComputerModel = ({ rotating }) => {
+  const computer = useGLTF(computerModelUrl);
+  const group = useRef(null);
+  useFrame((_, delta) => {
+    if (rotating && group.current) group.current.rotation.y += Math.min(delta, 0.05) * 0.22;
+  });
+  return <group ref={group}><Center><primitive object={computer.scene} rotation={[-0.01, -0.2, -0.1]} /></Center></group>;
 };
 
-const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isSupported, setIsSupported] = useState(true);
-
+const ComputersCanvas = ({ visible = true }) => {
+  const reduced = useReducedMotionPreference();
+  const [supported, setSupported] = useState(null);
+  const [finePointer, setFinePointer] = useState(false);
   useEffect(() => {
-    // Check WebGL support
+    const probe = document.createElement("canvas");
     try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
-      if (!gl) {
-        setIsSupported(false);
-        console.warn('WebGL not supported');
-      }
-    } catch (e) {
-      setIsSupported(false);
-      console.warn('WebGL check failed:', e);
-    }
-
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+      const context = probe.getContext("webgl2") || probe.getContext("webgl");
+      setSupported(!!context);
+      context?.getExtension("WEBGL_lose_context")?.loseContext();
+    } catch { setSupported(false); }
+    const pointer = window.matchMedia("(pointer: fine)");
+    const updatePointer = () => setFinePointer(pointer.matches);
+    updatePointer();
+    pointer.addEventListener("change", updatePointer);
+    return () => pointer.removeEventListener("change", updatePointer);
   }, []);
-
-  if (!isSupported) {
-    return (
-      <div className='w-full h-full bg-gradient-to-b from-gray-900 to-black' />
-    );
-  }
-
+  if (!supported) return <StaticComputer />;
   return (
-    <Canvas
-      frameloop='demand'
-      shadows={!isMobile}
-      dpr={isMobile ? 1 : [1, 2]}
-      camera={{ position: isMobile ? [0, 0, 20] : [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true, antialias: !isMobile, powerPreference: 'high-performance' }}
-      className='h-full w-full'
-    >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={!isMobile}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-          autoRotate={!isMobile}
-          autoRotateSpeed={2}
-        />
-        <Computers isMobile={isMobile} />
-      </Suspense>
-
-      <Preload all />
-    </Canvas>
+    <ComputerBoundary>
+      <Canvas frameloop={visible && !reduced ? 'always' : 'demand'} dpr={[1, 1.5]} camera={{ position: [14, 9, 14], fov: 40 }} gl={{ antialias: true, alpha: true, powerPreference: 'low-power' }} style={{ touchAction: 'pan-y' }} aria-label='Rotating 3D developer workstation'>
+        <hemisphereLight intensity={1.2} groundColor='#251039' />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 15, 10]} intensity={1.6} />
+        <pointLight position={[-10, 8, -10]} intensity={1} color='#b59aff' />
+        <Suspense fallback={<CanvasLoader />}>
+          <Bounds fit clip observe margin={1.06}><ComputerModel rotating={visible && !reduced} /></Bounds>
+        </Suspense>
+        {finePointer && <OrbitControls makeDefault enableZoom={false} enablePan={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 2.1} />}
+      </Canvas>
+    </ComputerBoundary>
   );
 };
 
 export default ComputersCanvas;
-
-useGLTF.preload(computerModelUrl);

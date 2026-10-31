@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { services } from "../constants";
+import { profileSummary } from "../constants/profile";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
@@ -47,11 +48,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a skilled software engineer with experience in TypeScript,
-        JavaScript, React.js, ASP.NET, ASP.NET MVC, Web API, SQL Server,
-        Node.js, and Three.js. I collaborate closely with teams and clients to
-        build efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        {profileSummary}
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>

@@ -1,3 +1,5 @@
+import { availability, education, experienceSummary, languages, profileSummary, skillsSummary } from "../../src/constants/profile.js";
+
 const json = (statusCode, body) => ({
   statusCode,
   headers: {
@@ -10,13 +12,18 @@ const json = (statusCode, body) => ({
 });
 
 const portfolioContext = `
-Muzamil Niaz is a software engineer specializing in JavaScript, TypeScript, React, Next.js, Redux, Tailwind CSS, Node.js, ASP.NET, ASP.NET MVC, REST APIs, SQL Server, MongoDB, Three.js, Git, Docker, and Figma.
+Muzamil Niaz: ${profileSummary}
+${availability}
+
+Skills:
+${skillsSummary}
 
 Experience:
-- Buch International Hospital: leads frontend engineering for a hospital management system with 16+ clinical and administrative modules, 250+ screens, React, TanStack Query, Tailwind CSS, and ASP.NET Core APIs.
-- TechScope: React software engineer working on responsive products, interfaces, and web application architecture.
-- Atrule Technologies: software engineering, reusable UI, responsive systems, collaboration, and code review.
-- Soft Infinity: frontend interfaces, UX collaboration, and browser performance.
+${experienceSummary}
+
+Education:
+${education.join("\n")}
+Languages: ${languages}
 
 Representative work includes Placed.today recruitment tools, TechScope's training and talent platform, Quality Shop marketplace, AtRule remote developer hub, AtCommerce e-commerce, WynShop retail order management PWA, VERO event management, landing pages, NopCommerce stores, and UI/UX designs.
 

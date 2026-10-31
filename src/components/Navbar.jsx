@@ -13,9 +13,8 @@ import {
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo } from "../assets";
-
-const RESUME_LINK =
-  "https://drive.google.com/uc?export=download&id=15NHJc7djvMpl-LXHthL4PhBSA6ufKHrr";
+import { resumeUrl } from "../constants/profile";
+import { scrollToTarget } from "../utils/scroll";
 
 const navIcons = {
   intro: HiOutlineUser,
@@ -27,7 +26,27 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const scrollFrame = useRef(null);
+  const menuButton = useRef(null);
+
+  useEffect(() => {
+    if (!toggle) return;
+    const closeOutside = (event) => {
+      if (!event.target.closest(".site-navigation")) setToggle(false);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") { setToggle(false); menuButton.current?.focus(); }
+    };
+    const closeOnResize = () => { if (window.innerWidth >= 1024) setToggle(false); };
+    document.addEventListener("pointerdown", closeOutside);
+    document.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("resize", closeOnResize);
+    return () => {
+      document.removeEventListener("pointerdown", closeOutside);
+      document.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("resize", closeOnResize);
+    };
+  }, [toggle]);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,46 +63,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    return () => {
-      if (scrollFrame.current) {
-        window.cancelAnimationFrame(scrollFrame.current);
-      }
-    };
-  }, []);
-
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (!section) return;
-
-    if (scrollFrame.current) {
-      window.cancelAnimationFrame(scrollFrame.current);
-    }
-
-    const start = window.scrollY;
-    const navOffset = window.innerWidth < 640 ? 76 : 92;
-    const target = section.getBoundingClientRect().top + start - navOffset;
-    const distance = target - start;
-    const duration = Math.min(980, Math.max(520, Math.abs(distance) * 0.48));
-    const startedAt = performance.now();
-
-    const easeOutQuart = (value) => 1 - Math.pow(1 - value, 4);
-
-    const step = (now) => {
-      const elapsed = now - startedAt;
-      const progress = Math.min(elapsed / duration, 1);
-
-      window.scrollTo(0, start + distance * easeOutQuart(progress));
-
-      if (progress < 1) {
-        scrollFrame.current = window.requestAnimationFrame(step);
-      } else {
-        scrollFrame.current = null;
-        window.history.replaceState(null, "", `#${id}`);
-      }
-    };
-
-    scrollFrame.current = window.requestAnimationFrame(step);
+    scrollToTarget(id);
+    window.history.replaceState(null, "", `#${id}`);
   };
 
   const handleNavClick = (event, nav) => {
@@ -97,7 +79,7 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex items-center py-4 fixed top-0 z-[9999] transition-all duration-300 ${
+      } site-navigation w-full flex items-center py-4 fixed top-0 z-[9999] transition-all duration-300 ${
         scrolled ? "bg-primary/85 shadow-lg shadow-black/20 backdrop-blur-xl" : "bg-transparent"
       }`}
     >
@@ -107,17 +89,17 @@ const Navbar = () => {
           className='flex items-center gap-2'
           onClick={() => {
             setActive("");
-            window.scrollTo(0, 0);
+            scrollToTarget(0);
           }}
         >
           <img src={logo} alt='logo' className='w-9 h-9 rounded-xl object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
             Muzamil &nbsp;
-            <span className='sm:block hidden'>| Software Engineer</span>
+            <span className='lg:block hidden'>| Software Engineer</span>
           </p>
         </Link>
 
-        <ul className='list-none hidden sm:flex flex-row items-center gap-8'>
+        <ul className='list-none hidden lg:flex flex-row items-center gap-8'>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -133,7 +115,7 @@ const Navbar = () => {
           ))}
           <li>
             <a
-              href={RESUME_LINK}
+              href={resumeUrl}
               target='_blank'
               rel='noopener noreferrer'
               className='rounded-lg border border-[#915EFF]/40 px-4 py-2 text-[15px] font-semibold text-white transition-colors hover:bg-[#915EFF]/20'
@@ -143,11 +125,13 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
+        <div className='lg:hidden flex flex-1 justify-end items-center'>
           <button
             type='button'
             aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={toggle}
+            aria-controls='mobile-navigation-menu'
+            ref={menuButton}
             className='relative grid h-12 w-12 place-items-center overflow-hidden rounded-full border border-white/15 bg-white/10 text-white shadow-lg shadow-black/20 backdrop-blur-xl'
             onClick={() => setToggle(!toggle)}
           >
@@ -168,6 +152,8 @@ const Navbar = () => {
           <AnimatePresence>
             {toggle && (
               <motion.div
+                id='mobile-navigation-menu'
+                data-lenis-prevent
                 initial={{ opacity: 0, y: -14, scale: 0.96, height: 0 }}
                 animate={{ opacity: 1, y: 0, scale: 1, height: "auto" }}
                 exit={{ opacity: 0, y: -12, scale: 0.96, height: 0 }}
@@ -218,7 +204,7 @@ const Navbar = () => {
                     className='mt-2 border-t border-white/10 pt-2'
                   >
                     <a
-                      href={RESUME_LINK}
+                      href={resumeUrl}
                       target='_blank'
                       rel='noopener noreferrer'
                       className='flex items-center justify-between rounded-xl bg-[#915EFF] px-4 py-3 text-[16px] font-semibold text-white shadow-lg shadow-[#915EFF]/25'

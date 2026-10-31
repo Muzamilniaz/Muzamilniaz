@@ -1,151 +1,65 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
-
-import { styles } from "../styles";
+import { useReducedMotionPreference } from "../hooks/useReducedMotionPreference";
+﻿import { useLayoutEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { HiArrowUpRight } from "react-icons/hi2";
 import { experiences } from "../constants";
+import { placed, atrule } from "../assets";
+import hospitalVisual from "../assets/web-dev/bihhis.png";
 import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
+import SectionHeading from "./SectionHeading";
 
-const ExperienceCard = ({ experience }) => {
+const companyVisuals = {
+  "Buch International Hospital": hospitalVisual,
+  "placed.today, USA": placed,
+  "Atrule Technologies Pvt Ltd": atrule,
+};
+
+const CareerShowcase = ({ experience, index }) => {
+  const track = useRef(null);
+  const panel = useRef(null);
+  const [canPin, setCanPin] = useState(false);
+  const reduced = useReducedMotionPreference();
+  const { scrollYProgress } = useScroll({ target: track, offset: ["start end", "end start"] });
+  const scale = useTransform(scrollYProgress, [0, 0.25, 0.8, 1], [0.91, 1, 1, 0.96]);
+  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.9, 1], [0.45, 1, 1, 0.6]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.35, 0.75, 1], [1.1, 1, 1, 1.04]);
+  const visual = companyVisuals[experience.company_name];
+  useLayoutEffect(() => {
+    const measure = () => setCanPin(window.innerWidth >= 1024 && panel.current.offsetHeight <= window.innerHeight - 128);
+    const observer = new ResizeObserver(measure);
+    observer.observe(panel.current);
+    window.addEventListener("resize", measure);
+    measure();
+    return () => { observer.disconnect(); window.removeEventListener("resize", measure); };
+  }, []);
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "linear-gradient(135deg, rgba(29, 24, 54, 0.95) 0%, rgba(15, 15, 40, 0.9) 100%)",
-        color: "#fff",
-        border: "1px solid rgba(145, 94, 255, 0.2)",
-        borderRadius: "1rem",
-        boxShadow: "0 8px 32px rgba(145, 94, 255, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.1)",
-        backdropFilter: "blur(10px)",
-        padding: "1.75rem",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid rgba(145, 94, 255, 0.4)" }}
-      date={experience.date}
-      iconStyle={{ 
-        background: experience.iconBg,
-        boxShadow: `0 0 20px ${experience.iconBg}80, inset 0 1px 1px rgba(255, 255, 255, 0.2)`,
-        border: "2px solid rgba(145, 94, 255, 0.3)",
-      }}
-      icon={
-        <motion.div 
-          className='flex justify-center items-center w-full h-full'
-          whileHover={{ scale: 1.1, rotate: 360 }}
-          transition={{ duration: 0.6 }}
-        >
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain drop-shadow-lg'
-          />
-        </motion.div>
-      }
-    >
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h3 className='text-white text-lg sm:text-xl md:text-2xl font-bold mb-1 bg-gradient-to-r from-white to-[#915EFF] bg-clip-text text-transparent'>
-          {experience.title}
-        </h3>
-        {experience.company_link ? (
-          <a
-            href={experience.company_link}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-block text-secondary hover:text-[#915EFF] text-sm sm:text-base font-semibold mb-4 transition-colors'
-            style={{ margin: 0 }}
-          >
-            {experience.company_name}
-          </a>
-        ) : (
-          <p
-            className='text-secondary text-sm sm:text-base font-semibold mb-4'
-            style={{ margin: 0 }}
-          >
-            {experience.company_name}
-          </p>
-        )}
-        
-        <p className='text-xs sm:text-sm text-[#C1C2D3] font-light italic mb-4 border-l-2 border-[#915EFF] pl-3'>
-          {experience.date}
-        </p>
-
-        <ul className='mt-4 space-y-2.5 sm:space-y-3'>
-          {experience.points.map((point, index) => (
-            <motion.li
-              key={`experience-point-${index}`}
-              className='text-[#C1C2D3] text-xs sm:text-sm leading-relaxed pl-4 relative'
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <span className='absolute left-0 top-1.5 w-1.5 h-1.5 bg-gradient-to-r from-[#915EFF] to-[#c946e6] rounded-full' />
-              {point}
-            </motion.li>
-          ))}
-        </ul>
+    <article ref={track} className={`career-track ${canPin && !reduced ? "career-track--pinned" : ""}`}>
+      <motion.div ref={panel} data-career-scene className='career-showcase' style={reduced ? { scale: 1, opacity: 1 } : { scale, opacity }}>
+        <div className='career-visual'>
+          <div className='preview-chrome' aria-hidden='true'><span className='preview-dots'><i /><i /><i /></span><span>career / {String(index + 1).padStart(2, "0")}</span><span className='preview-code'>&lt;/&gt;</span></div>
+          {visual ? <div className='career-visual-image'><motion.img src={visual} alt={`${experience.company_name} product showcase`} loading='lazy' decoding='async' className='h-full w-full object-contain' style={{ scale: reduced ? 1 : imageScale }} /></div> : <div className='career-brand-visual'><span className='career-brand-watermark' aria-hidden='true'>&lt;/&gt;</span><img src={experience.icon} alt={`${experience.company_name} logo`} className='career-brand-logo' style={{ backgroundColor: experience.iconBg }} loading='lazy' /><p className='mt-7 text-xs uppercase tracking-[0.15em] text-secondary'>{experience.company_name}</p><p className='mt-3 text-3xl font-semibold tracking-tight text-white'>{index === 0 ? "Aladine" : "Frontend foundations"}</p><p className='mt-3 max-w-xs text-sm leading-7 text-secondary'>{experience.focus}</p><div className='mt-6 flex flex-wrap gap-2'>{experience.technologies.map((item) => <span key={item} className='stack-tag'>{item}</span>)}</div></div>}
+          <div className='career-visual-footer'><span>{experience.company_name}</span><span>{String(index + 1).padStart(2, "0")} / {String(experiences.length).padStart(2, "0")}</span></div>
+        </div>
+        <div className='career-copy'>
+          <div className='mb-4 flex flex-wrap items-center gap-3'><span className='font-mono text-xs text-[#cbb6ff]'>{experience.date}</span>{experience.date.includes("Present") && <span className='career-current'><span aria-hidden='true' />Current role</span>}</div>
+          <h3>{experience.title}</h3>
+          {experience.company_link ? <a href={experience.company_link} target='_blank' rel='noopener noreferrer' className='portfolio-text-link mt-3'>{experience.company_name}<HiArrowUpRight aria-hidden='true' /></a> : <p className='mt-3 text-sm font-medium text-[#c9b4ff]'>{experience.company_name}</p>}
+          <ul className='mt-5 space-y-3'>{experience.points.map((point) => <li key={point} className='flex items-start gap-3 text-[13px] leading-7 text-secondary'><span className='mt-3 h-1 w-1 shrink-0 rounded-full bg-[#a987ff]' aria-hidden='true' /><span>{point}</span></li>)}</ul>
+          <div className='mt-6 flex flex-wrap gap-x-3 gap-y-2 border-t border-[#915EFF]/20 pt-5'>{experience.technologies.map((item) => <span className='project-tech' key={item}>{item}</span>)}</div>
+        </div>
       </motion.div>
-    </VerticalTimelineElement>
+    </article>
   );
 };
 
-const Experience = () => {
-  return (
-    <div className="relative">
-      {/* Animated Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <motion.div
-          className="absolute top-20 right-1/4 w-96 h-96 bg-[#915EFF]/6 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-1/3 w-80 h-80 bg-[#c946e6]/6 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -40, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
-        </h2>
-      </motion.div>
-
-      <motion.div 
-        className='mt-12 sm:mt-16 md:mt-20 flex flex-col'
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
-      </motion.div>
+const Experience = () => (
+  <div>
+    <div className='editorial-rule mb-9'><span>02 / THE JOURNEY</span><span>EXPERIENCE IN ACTION</span></div>
+    <SectionHeading eyebrow='The teams behind the work' title='Work Experience' description='The products, people, and challenges that shaped my journey. Scroll through each chapter.' />
+    <div className='career-showcases'>
+      {experiences.map((experience, index) => <CareerShowcase key={experience.company_name} experience={experience} index={index} />)}
     </div>
-  );
-};
+  </div>
+);
 
 export default SectionWrapper(Experience, "work");

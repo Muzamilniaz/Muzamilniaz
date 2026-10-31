@@ -1,6 +1,7 @@
 import gridImg from "../assets/grid.svg";
 import b4Img from "../assets/b4.svg";
 import b5Img from "../assets/b5.svg";
+import bihhisImage from "../assets/web-dev/bihhis.png";
 import {
   atcommerce,
   placed,
@@ -50,7 +51,7 @@ export const gridItems = [
   },
   {
     id: 2,
-    title: "I'm very flexible with time zone communications",
+    title: "Open to remote roles worldwide",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
@@ -80,8 +81,8 @@ export const gridItems = [
   },
   {
     id: 5,
-    title: "Exploring new creative possibilities in software engineering.",
-    description: "Passionate about blending architecture, interactivity, and technology for scalable user experiences.",
+    title: "Building AI-powered SaaS and enterprise applications.",
+    description: "5+ years with React, Next.js, and TypeScript. Delivering Aladine with React and Supabase, and leading a hospital management frontend with 16+ modules and 250+ screens.",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-top-[50%] top-[5%]",
@@ -137,12 +138,20 @@ export const projects = [
 
 export const projectsByCategory = {
   webDevelopment: [
-    
+    {
+      id: 8,
+      title: "Hospital Management System (BIHHIS)",
+      description: "Frontend for a 16+ module clinical and administrative system with 250+ screens across a 500+ bed hospital. Used TanStack Query for caching and optimistic updates, and enforced role-gated routes, conditional UI, and permission-aware API calls for 10+ staff roles.",
+      tags: ["React", "TypeScript", "TanStack Query", "Tailwind CSS", "shadcn/ui", "React Router", "ASP.NET Core APIs", "JWT"],
+      image: bihhisImage,
+      imageFit: "contain",
+      source_code_link: "https://dev.buchhospital.com",
+    },
     {
       id: 1,
       title: "Placed.today - AI-Powered Recruitment Platform",
-      description: "AI-powered platform with user/moderator/admin dashboards and role-based management. Built Resume modules, Interview tools, and AI Auto Apply using React, Next.js, and Tailwind CSS. Integrated AI algorithms and REST APIs for automated applications and resume analysis.",
-      tags: ["React", "Next.js", "Tailwind CSS", "Redux", "TypeScript", "Node.js", "AI Integration"],
+      description: "Full-stack AI recruitment platform with User, Moderator, and Admin dashboards for candidate onboarding, job matching, and application management. Built a resume builder and optimizer, GPT-4 job matching and cover letters, and interview prep. Implemented Google SSO, JWT refresh-token rotation, CSRF protection, and httpOnly cookies.",
+      tags: ["Next.js (App Router)", "TypeScript", "Tailwind CSS", "Redux Toolkit", "OpenAI GPT-4", "OAuth 2.0"],
       image: placed,
       source_code_link: "https://www.placed.today/",
     },
@@ -157,8 +166,8 @@ export const projectsByCategory = {
     {
       id: 3,
       title: "Quality Shop - DTC Marketplace for Healthy Brands",
-      description: "DTC marketplace for healthy brands with scalable Next.js architecture managing 13K+ businesses from 2.5M Shopify stores. Integrated dynamic data visualization, filtering features, and OpenAI API for intelligent classification. Optimized performance with reusable components and efficient API handling.",
-      tags: ["Next.js", "React", "Tailwind CSS", "OpenAI API", "PostgreSQL", "GitHub"],
+      description: "SSR/ISR storefront aggregating 13K+ healthy food and drink brands from 2.5M+ Shopify stores. Added GPT-4 product classification, semantic search, recommendations, faceted filtering, and data visualisations.",
+      tags: ["Next.js 14", "TypeScript", "Tailwind CSS", "TanStack Query", "Node.js", "MongoDB", "OpenAI GPT-4", "Playwright"],
       image: qualityShop,
       source_code_link: "#",
     },
@@ -174,8 +183,8 @@ export const projectsByCategory = {
     {
       id: 5,
       title: "AtCommerce - Online Ecommerce Store Creation Platform",
-      description: "Translated Figma and PSD designs into pixel-perfect, user-friendly UIs with clean, reusable code. Collaborated with cross-functional teams on design, functionality, and performance optimization. Built component libraries and conducted code reviews for maintainability and scalability.",
-      tags: ["React", "Next.js", "Tailwind CSS", "GitHub", "Figma", "Responsive Design"],
+      description: "Architected a drag-and-drop storefront builder that lets non-technical merchants publish responsive online stores, with Stripe payments and webhook-driven order states.",
+      tags: ["React", "TypeScript", "Redux Toolkit", "Tailwind CSS", "Stripe"],
       image: atcommerce,
       source_code_link: "https://atcommerce.store/",
     },
@@ -191,8 +200,8 @@ export const projectsByCategory = {
     {
       id: 7,
       title: "VERO - Event Management & Volunteer Dashboard",
-      description: "React event management application with dynamic calendar interface for creating and managing events. Implemented recurring event scheduling and Redux for state management. Built with Bootstrap 5 for responsive UI and intuitive dashboard for real-time tracking.",
-      tags: ["React", "Redux", "Bootstrap 5", "JavaScript", "Calendar API", "GitHub"],
+      description: "Built a calendar dashboard with recurring scheduling and drag-and-drop rescheduling, with Admin and Organiser views behind JWT authentication.",
+      tags: ["React", "TypeScript", "Redux", "FullCalendar.js", "JWT"],
       image: vero,
       source_code_link: "https://verodev.atapps.io/",
     },

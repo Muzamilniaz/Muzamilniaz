@@ -14,15 +14,21 @@ import {
   PortfolioChat,
 } from "./components";
 import Grid from "./components/Grid";
+import SmoothScroll from "./components/SmoothScroll";
+import DeveloperBackdrop from "./components/DeveloperBackdrop";
+import MobileNavigation from "./components/MobileNavigation";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
+      <SmoothScroll />
+      <div className='relative z-0 bg-primary app-shell'>
         <Navbar />
-        <div className='hero-background bg-hero-pattern bg-cover bg-center bg-no-repeat'>
+        <div className='hero-background'>
           <Hero />
         </div>
+        <main className='developer-content'>
+        <DeveloperBackdrop />
         <Grid />
         <Experience />
         <Tech />
@@ -33,7 +39,9 @@ const App = () => {
           <Contact />
           <StarsCanvas />
         </div>
+        </main>
         <Footer />
+        <MobileNavigation />
         <PortfolioChat />
       </div>
     </BrowserRouter>

@@ -9,6 +9,7 @@ import {
 import { SiWhatsapp } from "react-icons/si";
 
 import { projectsByCategory } from "../constants/data";
+import { availability, experienceSummary, profileSummary, skillsSummary } from "../constants/profile";
 
 const WHATSAPP_URL =
   "https://wa.me/923166844292?text=Hi%20Muzamil%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.";
@@ -81,11 +82,11 @@ const getLocalReply = (question) => {
   }
 
   if (/about|who|muzamil|yourself|experience|background/.test(text)) {
-    return "Muzamil Niaz is a software engineer focused on React, Next.js, ASP.NET, REST APIs, SQL Server, and scalable product interfaces. His experience includes hospital management software, recruitment and talent platforms, e-commerce, dashboards, PWAs, and UI/UX work. He values direct communication, reusable architecture, and practical delivery.";
+    return `Muzamil Niaz: ${profileSummary}\n\nExperience:\n${experienceSummary}\n${availability}`;
   }
 
   if (/skill|technology|stack|language|framework/.test(text)) {
-    return "Muzamil works with JavaScript, TypeScript, React, Next.js, Redux, Tailwind CSS, Node.js, ASP.NET, ASP.NET MVC, Web API, SQL Server, MongoDB, Three.js, Git, Docker, and Figma.";
+    return skillsSummary;
   }
 
   if (/portfolio|projects|work|built/.test(text)) {
@@ -150,7 +151,7 @@ const PortfolioChat = () => {
   };
 
   return (
-    <div className='fixed bottom-4 right-4 z-[10000] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6'>
+    <div className={`portfolio-chat ${isOpen ? "portfolio-chat--open" : ""} fixed bottom-4 right-4 z-[10000] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6`}>
       <AnimatePresence>
         {isOpen && (
           <motion.section
@@ -158,7 +159,7 @@ const PortfolioChat = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.96 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className='flex h-[min(640px,75vh)] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#080b1d]/95 shadow-2xl shadow-black/60 backdrop-blur-2xl sm:w-[400px]'
+            className='portfolio-chat-popup flex h-[min(640px,75vh)] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#080b1d]/95 shadow-2xl shadow-black/60 backdrop-blur-2xl sm:w-[400px]'
             aria-label='Muzamil portfolio assistant'
           >
             <header className='flex items-center justify-between border-b border-white/10 bg-gradient-to-r from-[#915EFF]/25 to-[#c946e6]/10 px-5 py-4'>
@@ -184,7 +185,7 @@ const PortfolioChat = () => {
               </button>
             </header>
 
-            <div className='flex-1 space-y-4 overflow-y-auto px-4 py-5'>
+            <div data-lenis-prevent className='min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain px-4 py-5'>
               {messages.map((message, index) => (
                 <div
                   key={`${message.role}-${index}`}
@@ -248,7 +249,7 @@ const PortfolioChat = () => {
                   rows={1}
                   maxLength={1200}
                   placeholder='Ask about experience or describe your project...'
-                  className='max-h-28 min-h-[42px] flex-1 resize-none bg-transparent px-2 py-2 text-[13px] text-white outline-none placeholder:text-secondary/60'
+                  className='max-h-28 min-h-[42px] min-w-0 flex-1 resize-none bg-transparent px-2 py-2 text-[13px] text-white outline-none placeholder:text-secondary/60'
                 />
                 <button
                   type='submit'
@@ -274,7 +275,7 @@ const PortfolioChat = () => {
           rel='noopener noreferrer'
           whileHover={{ y: -3, scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          className='grid h-14 w-14 place-items-center rounded-full border border-white/15 bg-[#25D366] text-2xl text-white shadow-xl shadow-black/35'
+          className='portfolio-whatsapp-link grid h-14 w-14 place-items-center rounded-full border border-white/15 bg-[#25D366] text-2xl text-white shadow-xl shadow-black/35'
           aria-label='Chat with Muzamil on WhatsApp'
           title='Chat on WhatsApp'
         >
@@ -285,7 +286,7 @@ const PortfolioChat = () => {
           onClick={() => setIsOpen((current) => !current)}
           whileHover={{ y: -3, scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          className='relative grid h-16 w-16 place-items-center rounded-full border border-white/15 bg-gradient-to-br from-[#915EFF] to-[#c946e6] text-3xl text-white shadow-2xl shadow-[#915EFF]/35'
+          className='portfolio-chat-launcher relative grid h-16 w-16 place-items-center rounded-full border border-white/15 bg-gradient-to-br from-[#915EFF] to-[#c946e6] text-3xl text-white shadow-2xl shadow-[#915EFF]/35'
           aria-label={isOpen ? "Close portfolio chat" : "Open portfolio chat"}
           aria-expanded={isOpen}
           title='Ask about Muzamil'
