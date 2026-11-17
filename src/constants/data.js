@@ -82,7 +82,8 @@ export const gridItems = [
   {
     id: 5,
     title: "Building AI-powered SaaS and enterprise applications.",
-    description: "5+ years with React, Next.js, and TypeScript. Delivering Aladine with React and Supabase, and leading a hospital management frontend with 16+ modules and 250+ screens.",
+    // description: "5+ years with React, Next.js, and TypeScript. Delivering Aladine with React and Supabase, and leading a hospital management frontend with 16+ modules and 250+ screens.",
+    description: "5+ years with React, Next.js, and TypeScript, including leading a hospital management frontend with 16+ modules and 250+ screens.",
     className: "md:col-span-3 md:row-span-2",
     imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
     titleClassName: "justify-center md:justify-start lg:justify-top-[50%] top-[5%]",

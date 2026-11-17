@@ -32,7 +32,7 @@ import {
   softinfinityLogo,
   buchHospitalLogo,
 } from "../assets";
-import aigencyLogo from "../assets/company/aigency-logo.png";
+// import aigencyLogo from "../assets/company/aigency-logo.png";
 import placedLogo from "../assets/company/placed-logo.svg";
 
 export const navLinks = [
@@ -141,20 +141,20 @@ const technologies = [
 ];
 
 const experiences = [
-  {
-    title: "Software Engineer (Full Stack) · Remote",
-    company_name: "Aigency Solutions",
-    focus: "AI-powered product development",
-    technologies: ["React", "Supabase", "Lovable AI"],
-    icon: aigencyLogo,
-    iconBg: "#ffffff",
-    date: "Sep 2026 - Present",
-    points: [
-      "Build the Aladine web product remotely using React and Supabase for the backend, database, and authentication.",
-      "Use Lovable AI to speed up UI scaffolding and iteration, then review and refine the generated code to production standards.",
-      "Ship features in a small remote team, working asynchronously across time zones.",
-    ],
-  },
+  // {
+  //   title: "Software Engineer (Full Stack) · Remote",
+  //   company_name: "Aigency Solutions",
+  //   focus: "AI-powered product development",
+  //   technologies: ["React", "Supabase", "Lovable AI"],
+  //   icon: aigencyLogo,
+  //   iconBg: "#ffffff",
+  //   date: "Sep 2026 - Present",
+  //   points: [
+  //     "Build the Aladine web product remotely using React and Supabase for the backend, database, and authentication.",
+  //     "Use Lovable AI to speed up UI scaffolding and iteration, then review and refine the generated code to production standards.",
+  //     "Ship features in a small remote team, working asynchronously across time zones.",
+  //   ],
+  // },
   {
     title: "Senior Software Engineer",
     company_name: "Buch International Hospital",

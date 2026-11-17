@@ -18,7 +18,9 @@ export const skillGroups = [
 ];
 
 export const experienceSummary = `
+${/*
 - Aigency Solutions: Software Engineer (Full Stack), remote, Sep 2026–Present. Builds Aladine with React and Supabase for backend, database, and authentication. Uses Lovable AI for UI scaffolding, reviews generated code, and ships asynchronously across time zones.
+*/ ""}
 - Buch International Hospital, Multan: Senior Software Engineer, Mar 2026–Present. Leads the frontend of a hospital management system with 16+ modules and 250+ screens for a 500+ bed hospital. Uses React, TanStack Query, Tailwind CSS, shadcn/ui, RBAC for 10+ staff roles, and ASP.NET Core APIs.
 - placed.today, USA: Full Stack Developer, remote and part-time, Jun 2023–Aug 2024. Built React, Next.js, Node.js, and MongoDB features, JWT authentication, third-party API integrations, and SSR/SSG performance improvements.
 - Atrule Technologies, Multan: Senior Software Engineer, Feb 2021–Oct 2025. Grew from Frontend Intern to Senior Software Engineer, reduced bundle sizes by up to 40% on key projects, built React/Next.js/Vue.js applications, and mentored junior developers.
